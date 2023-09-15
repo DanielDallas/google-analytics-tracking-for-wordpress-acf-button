@@ -124,7 +124,7 @@
                   <a <?php 
                   // Check if option to enable tracking for Button 2 is not empty or unchecked.
                   // and condition the onclick button event based on Theme Settings Options
-                  if(!empty(get_field('btn1-enable_google_analytics_tracking-in-header', 'option') )){?> onclick="return gtag_report_conversion('<?php echo $link_url; ?>');"<?php }?> href="<?php echo $link_url; ?>" title="<?php echo $link['title']; ?>" target="<?php echo $link_target; ?>" class="btn blue"><?php echo $link['title']; ?></a>
+                  if(!empty(get_field('btn1_enable_google_analytics_tracking_in_header', 'option') )){?> onclick="return gtag_report_conversion('<?php echo $link_url; ?>');"<?php }?> href="<?php echo $link_url; ?>" title="<?php echo $link['title']; ?>" target="<?php echo $link_target; ?>" class="btn blue"><?php echo $link['title']; ?></a>
               <?php
                 }
               ?>
@@ -140,7 +140,7 @@
                   <a <?php 
                   // Check if option to enable tracking for Button 2 is not empty or unchecked.
                   // and condition the onclick button event based on Theme Settings Options
-                  if(!empty(get_field('btn2-enable_google_analytics_tracking-in-header', 'option') )){?> onclick="return gtag_report_conversion('<?php echo $link_url; ?>');"<?php }?> href="<?php echo $link_url; ?>" title="<?php echo $link['title']; ?>" target="<?php echo $link_target; ?>" class="btn purple"><?php echo $link['title']; ?></a>
+                  if(!empty(get_field('btn2_enable_google_analytics_tracking_in_header', 'option') )){?> onclick="return gtag_report_conversion('<?php echo $link_url; ?>');"<?php }?> href="<?php echo $link_url; ?>" title="<?php echo $link['title']; ?>" target="<?php echo $link_target; ?>" class="btn purple"><?php echo $link['title']; ?></a>
               <?php
                 }
               ?>
@@ -293,6 +293,8 @@
 
             <?php
               if(get_queried_object_id() != 0) {
+
+                // Check if Button exists in the ACF options field and not empty in the Page Right-Side Settings
                 if(!empty(get_field('header_button_link'))) {
                   $link = get_field('header_button_link');
                   $link_url = $link['url'];
@@ -300,7 +302,10 @@
                   $link_target = $link['target'] ? $link['target'] : '_self';
             ?>
                   <div class="d-flex justify-content-center">
-                    <a href="<?php echo $link_url; ?>" title="<?php echo $link['title']; ?>" target="<?php echo $link_target; ?>" class="btn purple"><?php echo $link['title']; ?></a>
+                    <a <?php 
+                  // Check if option to enable tracking for Button is not empty or unchecked.
+                  // and condition the onclick button event based on Page Settings Options
+                  if(!empty(get_field('enable_google_analytics_tracking_on_page') )){?> onclick="return gtag_report_conversion('<?php echo $link_url; ?>');"<?php }?> href="<?php echo $link_url; ?>" title="<?php echo $link['title']; ?>" target="<?php echo $link_target; ?>" class="btn purple"><?php echo $link['title']; ?></a>
                   </div>
             <?php
                 }
