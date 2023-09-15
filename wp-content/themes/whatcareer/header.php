@@ -112,6 +112,7 @@
             <div class="button-group">
               
               <?php
+              // Check if Button One exists in the ACF options field and not empty in the Theme Settings
                 if(!empty(get_field('button_one', 'option'))) {
                   $link = get_field('button_one', 'option');
                   $link_url = $link['url'];
@@ -120,13 +121,16 @@
               ?>
 
               
-                  <a href="<?php echo $link_url; ?>" title="<?php echo $link['title']; ?>" target="<?php echo $link_target; ?>" class="btn blue"><?php echo $link['title']; ?></a>
+                  <a <?php 
+                  // Check if option to enable tracking for Button 2 is not empty or unchecked.
+                  // and condition the onclick button event based on Theme Settings Options
+                  if(!empty(get_field('btn1-enable_google_analytics_tracking-in-header', 'option') )){?> onclick="return gtag_report_conversion('<?php echo $link_url; ?>');"<?php }?> href="<?php echo $link_url; ?>" title="<?php echo $link['title']; ?>" target="<?php echo $link_target; ?>" class="btn blue"><?php echo $link['title']; ?></a>
               <?php
                 }
               ?>
 
               <?php
-                // Check if Button Two exists in the ACF options field and not empty in the Theme Settings
+              // Check if Button Two exists in the ACF options field and not empty in the Theme Settings
                 if(!empty(get_field('button_two', 'option'))) {
                   $link = get_field('button_two', 'option');
                   $link_url = $link['url'];
