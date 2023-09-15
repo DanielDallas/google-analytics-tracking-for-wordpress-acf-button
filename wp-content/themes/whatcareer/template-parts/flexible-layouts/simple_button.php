@@ -17,6 +17,8 @@
     <div class="row">
       <div class="col">
         <?php
+
+        // Check if Simple Button Option in the 'Page Settings' Content is not empty
           if(!empty(get_sub_field('button_url_link'))) {
             $link = get_sub_field('button_url_link');
             $link_url = $link['url'];
@@ -24,7 +26,10 @@
             $link_target = $link['target'] ? $link['target'] : '_self';
         ?>
             <div class="d-flex <?php echo $alignment; ?>">
-              <a href="<?php echo $link_url; ?>" title="<?php echo $link['title']; ?>" target="<?php echo $link_target; ?>" class="btn <?php echo $button_style; ?>"><?php echo $link['title']; ?></a>
+              <a <?php 
+                  // Check if option to enable tracking for Simple Button is empty or unchecked.
+                  // and condition the onclick button event based on Page content Settings
+                  if(!empty(get_sub_field('enable_google_conversion_tracking_on_simple_button') )){?> onclick="return gtag_report_conversion('<?php echo $link_url; ?>');"<?php }?> href="<?php echo $link_url; ?>" title="<?php echo $link['title']; ?>" target="<?php echo $link_target; ?>" class="btn <?php echo $button_style; ?>"><?php echo $link['title']; ?></a>
             </div>
         <?php
           }
