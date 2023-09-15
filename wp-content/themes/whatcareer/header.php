@@ -134,7 +134,7 @@
                   $link_target = $link['target'] ? $link['target'] : '_self';
               ?>
                   <a <?php 
-                  // We check if option to enable tracking for Button 2 is not empty
+                  // Check if option to enable tracking for Button 2 is not empty or unchecked.
                   // and condition the onclick button event based on Theme Settings Options
                   if(!empty(get_field('btn2-enable_google_analytics_tracking-in-header', 'option') )){?> onclick="return gtag_report_conversion('<?php echo $link_url; ?>');"<?php }?> href="<?php echo $link_url; ?>" title="<?php echo $link['title']; ?>" target="<?php echo $link_target; ?>" class="btn purple"><?php echo $link['title']; ?></a>
               <?php
